@@ -1,0 +1,251 @@
+// ── Base ──────────────────────────────────────────────────────────────────────
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+// ── Design tokens ─────────────────────────────────────────────────────────────
+:root {
+  --bg:       #f7f5f2;
+  --surface:  #fff;
+  --ink:      #1c1917;
+  --ink2:     #44403c;
+  --muted:    #a8a29e;
+  --border:   #e7e5e0;
+  --border2:  #d4d0ca;
+  --gold:     #c9a84c;
+  --sage:     #6b8f71;
+  --r-sm:     6px;
+  --ease:     cubic-bezier(.4, 0, .2, 1);
+  --t:        .2s var(--ease);
+}
+
+// ── Navbar ────────────────────────────────────────────────────────────────────
+.navbar {
+  padding: 0 2rem;
+  background-color: white;
+}
+
+// ── Progress bar ──────────────────────────────────────────────────────────────
+.prog-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+
+  .prog-in {
+    max-width: 1280px;
+    padding: 25px 2rem;
+    display: flex;
+    align-items: center;
+    height: 44px;
+  }
+}
+
+.ps {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 1.25rem 0 7px;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--muted);
+  position: relative;
+  flex-shrink: 0;
+  transition: color var(--t);
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 1px;
+    background: var(--border2);
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+
+  &.active {
+    color: var(--ink);
+
+    .pn {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+  }
+
+  &.done {
+    color: var(--sage);
+
+    .pn {
+      background: var(--sage);
+      color: #fff;
+      border-color: var(--sage);
+    }
+  }
+}
+
+.pn {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .62rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: all var(--t);
+}
+
+// ── Layout ────────────────────────────────────────────────────────────────────
+.main {
+  padding: 1.25rem 1rem 4rem;
+  width: 100%;
+}
+
+// ── Typography utilities ──────────────────────────────────────────────────────
+.sub-title {
+  font-size: .7rem;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+.placeholder {
+  font-size: 13px;
+}
+
+// ── Shared components ─────────────────────────────────────────────────────────
+.shadow {
+  box-shadow: rgba(0, 0, 0, .12) 0 1px 3px, rgba(0, 0, 0, .24) 0 1px 2px;
+}
+
+.card-ico {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .95rem;
+  background: var(--bg);
+  flex-shrink: 0;
+  padding: 5px;
+}
+
+// ── Room card ─────────────────────────────────────────────────────────────────
+.r-emoji {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.r-name {
+  font-size: .7rem;
+  font-weight: 500;
+  color: var(--ink2);
+}
+
+// ── Selection Summary ─────────────────────────────────────────────────────────
+.select-icon {
+  top: 7px;
+  position: relative;
+}
+
+.selected-name {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.cost-range {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: .875rem;
+  padding: .625rem .875rem;
+  background: var(--bg);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+}
+
+.s-key {
+  font-size: .68rem;
+  color: var(--muted);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.s-val {
+  font-size: .77rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+// ── Materials ─────────────────────────────────────────────────────────────────
+.home-parts {
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.btn-parts {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: .375rem .8rem;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  background: var(--surface);
+  font-size: .76rem;
+  color: var(--ink2);
+  transition: all var(--t);
+  user-select: none;
+
+  &.chipactive {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+}
+
+// ── AI Summary panel ──────────────────────────────────────────────────────────
+.ai-title {
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ai-sub-title {
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ai-section {
+  display: flex;
+  flex-direction: column;
+  gap: .375rem;
+}
+
+.ai-txt {
+  font-size: .78rem;
+  color: #d4cfc8;
+  line-height: 1.65;
+}
